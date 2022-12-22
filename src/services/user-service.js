@@ -38,6 +38,29 @@ class UserService {
     }
   }
 
+  async isAuthenticated(token) {
+    try {
+      const response = this.verifyToken(token);
+      if (!response) {
+        return { error: "Invalid Token" };
+      }
+      const user = this.userRepository.getById(response.id);
+
+      if (!user) {
+        return { error: "No user with the corresponding token user exist" };
+      }
+
+      return user.id;
+
+
+
+      
+    } catch (error) {
+      console.log("something went wrong in the auth process");
+      throw error;
+    }
+  }
+
   createToken(user) {
     try {
       const result = jwt.sign(user, JWT_KEY, {
