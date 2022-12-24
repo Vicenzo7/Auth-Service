@@ -44,17 +44,13 @@ class UserService {
       if (!response) {
         return { error: "Invalid Token" };
       }
-      const user = this.userRepository.getById(response.id);
+      const user = await this.userRepository.getById(response.id);
 
       if (!user) {
         return { error: "No user with the corresponding token user exist" };
       }
 
       return user.id;
-
-
-
-      
     } catch (error) {
       console.log("something went wrong in the auth process");
       throw error;
