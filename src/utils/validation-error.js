@@ -10,7 +10,7 @@ class ValidationError extends AppError {
       explanation.push(element.message);
     });
 
-    super(errorName, "Send valid data", explanation, StatusCodes.BAD_REQUEST);
+    super(errorName, StatusCodes.BAD_REQUEST, "Send valid data", explanation);
   }
 }
 

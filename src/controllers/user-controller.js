@@ -32,7 +32,7 @@ const signIn = async (req, res) => {
       req.body.email,
       req.body.password
     );
-    return res.status(200).json({
+    return res.status().json({
       data: response,
       message: "Successfully signed-in",
       success: true,
@@ -40,11 +40,11 @@ const signIn = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
+    return res.status(error.statusCode).json({
       data: {},
-      message: "Something went wrong",
+      message: error.message,
       success: false,
-      err: error,
+      err: error.explanation,
     });
   }
 };
