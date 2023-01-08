@@ -90,9 +90,30 @@ const isAdmin = async (req, res) => {
   }
 };
 
+const getEmail = async (req, res) => {
+  try {
+    const response = await userService.getEmail(req.params.id);
+    return res.status(200).json({
+      data: response,
+      success: true,
+      message: "Successfully fetched the email",
+      err: {},
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(error.statusCode).json({
+      data: {},
+      message: error.message,
+      success: false,
+      err: error.explanation,
+    });
+  }
+};
+
 module.exports = {
   create,
   signIn,
   isAuthenticated,
   isAdmin,
+  getEmail,
 };

@@ -16,6 +16,7 @@ router.post(
 );
 
 router.get("/isAuthenticated", UserController.isAuthenticated);
+router.get("/email/:id", UserController.getEmail);
 
 router.get(
   "/isAdmin",

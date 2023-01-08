@@ -80,6 +80,16 @@ class UserRepository {
       throw error;
     }
   }
+
+  async getEmail(userId) {
+    try {
+      const user = await User.findByPk(userId);
+      return user.email;
+    } catch (error) {
+      console.log("Something went wrong in the User repository layer");
+      throw { error };
+    }
+  }
 }
 
 module.exports = UserRepository;
